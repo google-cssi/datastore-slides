@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Datastore</h1>
+                    <h3>Easy storage for AppEngine</h3>
+                    <p>
+                        <small>Created by <a href="https://github.com/luisibanezcssi">Luis Ibanez</a> / <a href="http://twitter.com/luisibanez">@luisibanez</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h1>Datastore</h1>
+                    <h2>Native database</h2>
+                    <h2>in AppEngine</h2>
+                </section>
+
+                <section>
+                    <h1>Love</h1>
+                    <h1>databases</h1>
+                </section>
+
+                <section>
+                    <h1>databases</h1>
+                    <h1>Everywhere!</h1>
+                </section>
+
+                <section>
+                    <h1>Collection</h1>
+                    <h1>of Records</h1>
+                </section>
+
+                <section>
+                    <h2>Remember JSON?</h2>
+                    <pre><code class="language-json">
+"students":[
+  {"firstName":"John", "lastName":"Doe",   "email":"jd@gmail.com"},
+  {"firstName":"Anna", "lastName":"Smith", "email":"aj@gmail.com"},
+  {"firstName":"Peter","lastName":"Jones", "email":"pj@gmail.com"}
+]
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>A Field</h2>
+                    <pre><code class="language-json">
+"firstName":"John"
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>A Record</h2>
+                    <pre><code class="language-json">
+{
+  "firstName":"John",
+  "lastName":"Doe",
+  "email":"jd@gmail.com"
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>List of Records</h2>
+                    <pre><code class="language-json">
+"students":[
+  {"firstName":"John", "lastName":"Doe",   "email":"jd@gmail.com"},
+  {"firstName":"Anna", "lastName":"Smith", "email":"aj@gmail.com"},
+  {"firstName":"Peter","lastName":"Jones", "email":"pj@gmail.com"}
+]
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Several Lists of Records</h2>
+                    <div class="fragment">
+                    <pre><code class="language-json">
+"students":[
+  {"firstName":"John", "lastName":"Doe",   "email":"jd@gmail.com"},
+  {"firstName":"Anna", "lastName":"Smith", "email":"aj@gmail.com"},
+  ...
+]
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-json">
+"classes":[
+  {"name":"math 101",    "grade":"5th", "room":"B11"}
+  {"name":"zombies 201", "grade":"7th", "room":"Basement"}
+  ...
+  ]
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <h3>Which one of these</h3>
+                    <h3>is a Database?</h3>
+                    <ul>
+                        <li class="fragment">Phone Contacts</li>
+                        <li class="fragment">A Picture</li>
+                        <li class="fragment">Lunch Menu</li>
+                        <li class="fragment">Bus Schedule</li>
+                        <li class="fragment">Student list</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Which one of these</h3>
+                    <h3>is a Database?</h3>
+                    <ul>
+                        <li class="fragment">A Cat !</li>
+                        <li class="fragment">Veterinarian Cat Records</li>
+                        <li class="fragment">A Picture</li>
+                        <li class="fragment">Vacations Pictures Album</li>
+                        <li class="fragment">A Phone call</li>
+                        <li class="fragment">Phone calls history</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>What fields are</h3>
+                    <h3>in a veterinarian</h3>
+                    <h3>cat record?</h3>
+                </section>
+
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="http://people.csail.mit.edu/axz/img/google-spreadsheets-oct08.png" alt="Screenshot of Google spreadsheet">
+                    </a>
+                    <h3>Identify the Database Elements!</h3>
+                </section>
+
+                <section>
+                    <h1>Datastore</h1>
+                    <h2>Native database</h2>
+                    <h2>in AppEngine</h2>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="https://lh6.googleusercontent.com/3hpiS-YUsQ4rRadQe2mrmOoan0Bj-S3qhvzzlCQDby6hdOLsvWUlUtS0c0BlwDs0WMYpDyU6NMieYDEPP_MQfsJdaaFaj_7nO-I_sBUwazGnX49vwBvzO59H3-Jio-0QSQ" alt="Block diagram of Datastore interaction with Cloud and Apps">
+                    </a>
+                </section>
+
+                <section>
+                    <h2>What Datastore does for you:</h2>
+                    <h3>
+                      <ul>
+                        <li class="fragment">Store your records</li>
+                        <li class="fragment">Retrieve your records</li>
+                        <li class="fragment">Replicate your records</li>
+                        <li class="fragment">Index your records</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h1>A Record</h1>
+                    <h1>=</h1>
+                    <h1>Datastore Model</h1>
+                </section>
+
+                <section>
+                    <h1>Student</h1>
+                    <h1>Model</h1>
+                </section>
+
+                <section>
+                    <h2>Student Model</h2>
+                    <h3>
+                      <ul>
+                        <li class="fragment">Name</li>
+                        <li class="fragment">University</li>
+                        <li class="fragment">Age</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h2>Field Types</h2>
+                    <h3>
+                      <ul>
+                        <li class="fragment">Name:   String</li>
+                        <li class="fragment">University:  String</li>
+                        <li class="fragment">Age:       Integer</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h2>Model</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field:</th>
+                                <th>|</th>
+                                <th>Name</th>
+                                <th>|</th>
+                                <th>University</th>
+                                <th>|</th>
+                                <th>Age</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment">
+                                <th>Type:</th>
+                                <th>|</th>
+                                <th>String</th>
+                                <th>|</th>
+                                <th>String</th>
+                                <th>|</th>
+                                <th>Integer</th>
+                            </tr>
+                            <tr class="fragment">
+                                <th>Entity 1</th>
+                                <th>|</th>
+                                <th>"John Doe"</th>
+                                <th>|</th>
+                                <th>"UCLA"</th>
+                                <th>|</th>
+                                <th>21</th>
+                            </tr>
+                            <tr class="fragment">
+                                <th>Entity 2</th>
+                                <th>|</th>
+                                <th>"Jane Doe"</th>
+                                <th>|</th>
+                                <th>"MIT"</th>
+                                <th>|</th>
+                                <th>22</th>
+                            </tr>
+                            <tr class="fragment">
+                                <th>Entity 3</th>
+                                <th>|</th>
+                                <th>"Mary Smith"</th>
+                                <th>|</th>
+                                <th>"UNC"</th>
+                                <th>|</th>
+                                <th>19</th>
+                            </tr>
+                            <tr class="fragment">
+                                <th>...</th>
+                                <th>|</th>
+                                <th>...</th>
+                                <th>|</th>
+                                <th>...</th>
+                                <th>|</th>
+                                <th>...</th>
+                            </tr>
+                        <tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <h3>Model</h3>
+                    <h3>For a veterinarian</h3>
+                    <h3>cat record?</h3>
+                </section>
+
+                <section>
+                    <h2>Model</h2>
+                    <h3>
+                      <ul>
+                        <li>Field names</li>
+                        <li>Field types</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h2>Model</h2>
+                    <h3>For student records</h3>
+                </section>
+
+                <section>
+                    <p>Tell us about Python Classes!</p>
+                    <a href="#" class="image">
+                    <img width="75%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Cavalier_King_Charles_Spaniel_trio.jpg/630px-Cavalier_King_Charles_Spaniel_trio.jpg"
+                    alt="Small dogs looking for knowledge">
+                    </a>
+                </section>
+
+                <section>
+                    <h2>Python</h2>
+                    <h2>Classes</h2>
+                </section>
+
+                <section>
+                    <h2>Python Class</h2>
+                    <h3>
+                      <ul>
+                        <li class="fragment">Attributes</li>
+                        <li class="fragment">Methods</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h3>Python Class</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+class Student:
+  age = 25
+  name = "John Doe"
+  university = "UNC"
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+one_student = Student()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+print one_student.age
+print one_student.name
+print one_student.university
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Attributes</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+one_student = Student()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+print one_student.age
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+one_student.age = 22
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+print one_student.age
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Constructor</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+class Student:
+
+  def __init__(self, name, age, university):
+    self.name = name
+    self.age = age
+    self.university = university
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+one_student = Student(name="Mary", age=23, university="MIT")
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+print one_student.age
+print one_student.name
+print one_student.university
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Methods</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+class Student:
+  age = 25
+  name = "John Doe"
+  university = "UNC"
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+  def printMe(self):
+    print 'name: ', self.name
+    print 'age: ', self.age
+    print 'university: ', self.university
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+one_student = Student(name="Leroy", age=20, university="UCLA")
+one_student.printMe()
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <p>Write a Python Class</p>
+                    <p>Representing a Song</p>
+                    <p>
+                      <ul>
+                        <li>Title</li>
+                        <li>Singer</li>
+                        <li>Author</li>
+                        <li>Genre</li>
+                        <li>Year</li>
+                      </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <p>Write Methods</p>
+                    <p>
+                      <ul>
+                        <li>__init__</li>
+                        <li>printMe</li>
+                      </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Datastore</h2>
+                    <h2>Client </h2>
+                    <h2>Library</h2>
+                </section>
+
+                <section>
+                    <h3>Datastore Client Library</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+from google.appengine.ext import ndb
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+class Student(ndb.Model):
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+    name = ndb.StringProperty(required=True)
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+    university = ndb.StringProperty(required=True)
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+    age = ndb.IntegerProperty(required=False)
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Creating a Student Entity</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+student_instance = Student(name="Jon Doe", university="MIT")
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+student_instance.put()
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <h3>Write an AppEngine app</h3>
+                    <h3>that will</h3>
+                    <ul>
+                        <li class="fragment">Take from URL Query line
+                          <ul>
+                            <li class="fragment">Student Name</li>
+                            <li class="fragment">Student University</li>
+                          </ul>
+                        </li>
+                        <li class="fragment">Create a Student instance</li>
+                        <li class="fragment">Write the instance in Datastore</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Manually</h2>
+                    <h2>Inspecting</h2>
+                    <h2>Datastore</h2>
+                </section>
+
+                <section>
+                    <p>Launching AppEngine App</p>
+                    <div class="fragment">
+                    <pre><code>
+dev_appserver.py --port 9080 --admin_port 9000 .
+                    </code></pre>
+                    <div class="fragment">
+                    <pre><code language-bash>
+Checking for updates to the SDK.
+Starting API server at: http://localhost:59242
+Starting module "default" running at: http://localhost:9080
+Starting admin server at: http://localhost:9000
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>AppEngine Admin</p>
+                    <p><a href="http://localhost:9000">http://localhost:9000</a></p>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_admin_interface_01.png" alt="Screenshot of AppEngine admin interface">
+                    </a>
+                    <p>AppEngine Admin Interface</p>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_datastore_interface_01.png" alt="Screenshot of Datastore interface with no records">
+                    </a>
+                    <p>AppEngine Datastore Interface</p>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_datastore_interface_02.png" alt="Screenshot of Datastore interface with one records">
+                    </a>
+                    <p>AppEngine Datastore Interface</p>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_datastore_interface_03.png" alt="Screenshot of Datastore interface with two records">
+                    </a>
+                    <p>AppEngine Datastore Interface</p>
+                </section>
+
+                <section>
+                    <p>Datastore Consistency</p>
+                    <div class="fragment">
+                    <pre><code>
+dev_appserver.py . --datastore_consistency_policy=consistent
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Eventual Consistency...</p>
+                    <a href="#" class="image">
+                    <img width="100%"
+                    src="https://cloud.google.com/datastore/docs/articles/images/balancing-strong-and-eventual-consistency-with-google-cloud-datastore/eventual-consistency.png"
+                    alt="Diagram illustrating the concept of eventual consistency">
+                    </a>
+                </section>
+
+                <section>
+                    <p>Strong Consistency...</p>
+                    <a href="#" class="image">
+                    <img width="100%" src="https://cloud.google.com/datastore/docs/articles/images/balancing-strong-and-eventual-consistency-with-google-cloud-datastore/strong-consistency.png"
+                    alt="Diagram illustrating the concept of strong consistency">
+                    </a>
+                </section>
+
+                <section>
+                    <h2>Trade-Offs</h2>
+                    <h3>
+                      <ul>
+                        <li class="fragment">High Scalability</li>
+                        <li class="fragment">Low Latency</li>
+                        <li class="fragment">High Availability</li>
+                        <li class="fragment">High Consistency</li>
+                      </ul>
+                    </h3>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <h3>Pick Trade-Off</h3>
+                    <ul>
+                        <li class="fragment">Presidential Elections Results</li>
+                        <li class="fragment">Facebook Likes</li>
+                        <li class="fragment">Medical Records</li>
+                        <li class="fragment">Twitter Favorites</li>
+                        <li class="fragment">FBI Criminal Records</li>
+                        <li class="fragment">Soccer World Cup Results</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Consistency Options</h3>
+                    <pre><code>--datastore_consistency_policy=</code></pre>
+                    <div class="fragment"><pre><code>
+consistent
+                    </code></pre></div>
+                    <div class="fragment"><pre><code>
+time
+                    </code></pre></div>
+                    <div class="fragment"><pre><code>
+random
+                    </code></pre></div>
+                </section>
+
+                <section>
+                    <h1>Exercise !</h1>
+                </section>
+
+                <section>
+                    <h3>Write an AppEngine app</h3>
+                    <h3>that will</h3>
+                    <ul>
+                        <li class="fragment">Import ndb and define a student model</li>
+                        <li class="fragment">Make a GET handler for /add_student</li>
+                        <ul>
+                            <li class="fragment">Create a form with a single button here.</li>
+                            <li class="fragment">Make it post to /add_student.</li>
+                        </ul>
+                        <li class="fragment">Make a POST handler for /add_student</li>
+                        <ul>
+                            <li class="fragment">Create a Student entity.</li>
+                            <li class="fragment">Put it in the Datastore.</li>
+                            <li class="fragment">Write a confirmation message in the response.</li>
+                        </ul>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Testing the App</h2>
+                    <p>
+                      <ul>
+                        <li class="fragment">Browse to /add_student</li>
+                        <li class="fragment">Add three students</li>
+                        <li class="fragment">Inspect Datastore admin</li>
+                        <li class="fragment">Stop App</li>
+                        <li class="fragment">Restart App</li>
+                        <li class="fragment">Inspect Datastore admin again</li>
+                      </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Datastore</h2>
+                    <h2>Keys</h2>
+                </section>
+
+                <section>
+                    <h3>Get with Key</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key = student_instance.put()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key.get()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key.get().name
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+self.response.write(key.get().name)
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_datastore_interface_03.png" alt="Screenshot of Datastore interface with two records">
+                    </a>
+                    <p>AppEngine Datastore Interface</p>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                    <img width="100%" src="images/AppEngine_datastore_interface_04.png" alt="Screenshot of Datastore interface with record id and key">
+                    </a>
+                    <p>Record Key and Id</p>
+                </section>
+
+                <section>
+                    <h3>Key to Id</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key = student_instance.put()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+id = key.id()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+student = Student.get_by_id(id)
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Id to Key</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key = ndb.Key('Student', id)
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key.get()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+key.get().name
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Querying</h3>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+student_query = Student.query()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+student_data = student_query.fetch()
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+template_values = {
+    'students' : student_data
+}
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code class="language-python">
+template = JINJA_ENVIRONMENT.get_template('index.html')
+self.response.write(template.render(template_values))
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Keys in URLs</h3>
+                    <div class="fragment">
+                    <p>Get id and navigate to that url</p>
+                    <pre><code class="language-python">
+self.redirect('/view_student?key=%s' % key.urlsafe())
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <p>Get an entity from an ID</p>
+                    <pre><code class="language-python">
+key = ndb.Key(urlsafe=self.request.get("key"))
+student = key.get()
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Query</h3>
+                    <p><a href="https://cloud.google.com/appengine/docs/python/ndb/queryclass">https://cloud.google.com/appengine/docs/python/ndb/queryclass</a></p>
+                </section>
+
+                <section>
+                    <h3>Model</h3>
+                    <p><a href="https://cloud.google.com/appengine/docs/python/ndb/modelclass">https://cloud.google.com/appengine/docs/python/ndb/modelclass</a></p>
+                </section>
+
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+          // Full list of configuration options available at:
+          // https://github.com/hakimel/reveal.js#configuration
+          Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+              { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: 'plugin/zoom-js/zoom.js', async: true },
+              { src: 'plugin/notes/notes.js', async: true }
+            ]
+          });
+
+        </script>
+
+      </body>
+    </html>
